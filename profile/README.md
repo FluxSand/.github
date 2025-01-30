@@ -1,5 +1,9 @@
 # **FluxSand - Interactive Digital Hourglass**
 
+<div align=center>
+<img src="./FluxSand.jpg"  height="200">
+<p>
+
 🚀 **FluxSand** is an **interactive digital hourglass** designed using **real-time embedded systems**. It combines **gyroscope sensing, LED matrix display, and touch interaction** to create a dynamic and visually engaging timekeeping experience. By leveraging advanced sensor fusion and real-time processing, this system responds seamlessly to user actions, providing an immersive interaction.
 
 ---
@@ -14,6 +18,10 @@
 - **Enhanced Physical Interaction**: Users can flip the device or use touch buttons to control functions like pause, speed adjustment, or reset.
 - **Adaptive Brightness**: A light sensor detects ambient light levels and automatically adjusts LED brightness for optimal visibility.
 - **Audio Feedback**: The buzzer provides audio cues when the countdown finishes or when switching modes, enhancing user experience.
+
+<div align=center>
+<img src="./img1.png"  height="300">
+<p>
 
 ---
 
