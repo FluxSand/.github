@@ -12,7 +12,6 @@
 
 🚀 **FluxSand** is an **interactive digital hourglass** designed using **real-time embedded systems**. It combines **gyroscope sensing, LED matrix display, and touch interaction** to create a dynamic and visually engaging timekeeping experience. By leveraging advanced sensor fusion and real-time processing, this system responds seamlessly to user actions, providing an immersive interaction.
 
----
 
 ## **📌 Project Overview**
 
@@ -32,16 +31,20 @@
 <p>
 </div>
 
----
-
-
 **📌 Key Technologies**  
 
 - **Event-driven programming**: Uses **callbacks** to process sensor inputs & LED refresh, avoiding blocking operations and ensuring responsiveness.
 - **Multithreading control**: Separates data acquisition & display updates for real-time performance.
 - **GitHub version control**: Implements **Git for version tracking**, including commit history, issue tracking, and pull requests for structured development.
 
----
+## 👉 Division of responsibilities among team members
+- **Cong Liu (3055752L)**: Designed and implemented AHRS, systemd service integration, LED smoothing, and overall architecture control.
+- **Xinkai Li (3030890L)**: Integrated ADS1115 module; refactored and cleaned up third-party dependencies.
+- **Jiahe Chen (3049643C)**: Refined sensor fusion algorithms, improved inference runtime behavior, and optimized visual output handling.
+- **Haoming Wang (2987352W)**: Developed drivers for I2C peripherals including AHT20, BMP280, MAX7219; contributed to device interfacing.
+- **Lianxiao Yao (3048246Y)**: Developed GUI logic including countdown display, implemented motion-based flow behavior and fixed direction control.
+- **Yinjie Fan (3062833F)**: Implemented GUI components, humidity/temperature rendering, and contributed to LED matrix port control.
+
 
 ## **🚀 Development Progress**
 
@@ -52,7 +55,6 @@
 🔄 **Software testing & debugging** ··································································································✅[Completed]    
 📢 **Project promotion (social media & Hackaday)** ·································································✅[Completed]  
 
----
 
 ## **🎯 Key Features**
 
@@ -63,7 +65,6 @@
 ✅ **Audio feedback**: The buzzer signals key events, such as countdown completion or mode changes.  
 ✅ **Temperature & air pressure detection**: The AHT20 + BMP280 module measures ambient temperature and air pressure readings for the weather clock mode.  
 
----
 
 ## **🔧 Hardware Components**
 
@@ -81,8 +82,6 @@
 | **Type-C Cable**          | 24P 3A data cable                          | 1        | Data & power transfer                               |
 | **Wires/Dupont Lines**    | Various                                    | -        | Circuit connections                                 |
 | **Prototyping Board**     | Breadboard                                 | -        | Circuit assembly                                    |
-
----
 
 
 ## **💻 Software Architecture**
@@ -112,102 +111,40 @@ src/
     └── timer.h
 ```
 
-Additional directories and files:
-
-- `third_party/libxr/`: Integrated third-party library for extended functionality.
-- `imgs/`: Visual assets and diagrams used in the README.
-- `.vscode/`: Editor configuration files for VSCode development environment.
-- `.clang-format`, `.clangd`: Code formatting and language server configuration.
-- `CMakeLists.txt`: CMake configuration file for building the project.
-
----
+> Additional directories and files:
+> 
+> - `third_party/libxr/`: Integrated third-party library for extended functionality.
+> - `imgs/`: Visual assets and diagrams used in the README.
+> - `.vscode/`: Editor configuration files for VSCode development environment.
+> - `.clang-format`, `.clangd`: Code formatting and language server configuration.
+> - `CMakeLists.txt`: CMake configuration file for building the project.
 
 
-## 👉 Division of responsibilities among team members
+## **📝3rd Party Components**
 
-- **Cong Liu (3055752L)**: Designed and implemented AHRS, systemd service integration, LED smoothing, and overall architecture control.
-- **Xinkai Li (3030890L)**: Integrated ADS1115 module; refactored and cleaned up third-party dependencies.
-- **Jiahe Chen (3049643C)**: Refined sensor fusion algorithms, improved inference runtime behavior, and optimized visual output handling.
-- **Haoming Wang (2987352W)**: Developed drivers for I2C peripherals including AHT20, BMP280, MAX7219; contributed to device interfacing.
-- **Lianxiao Yao (3048246Y)**: Developed GUI logic including countdown display, implemented motion-based flow behavior and fixed direction control.
-- **Yinjie Fan (3062833F)**: Implemented GUI components, humidity/temperature rendering, and contributed to LED matrix port control.
+🔹 [**Madgwick's filter**](https://github.com/xioTechnologies/Open-Source-AHRS-With-x-IMU): Madgwick algorithm for orientation estimation.
+
+🔹 [**XRobot**](https://github.com/xrobot-org/XRobot): An embedded software framework for MCU, Arm/x86 Linux and simulator.
+
+## **🧠 Reference & Tutorials**
+🔹 [**Class Reference**](https://fluxsand.github.io/FluxSand/class_flux_sand.html): A visual documentation of reference for classes. 
+
+🔹 [**Guide for Compile & Installation**](https://fluxsand.github.io/3.run/README.html): A help documentation on how to compile and register as a system service.  
+
+> *Full program need to be compiled and installed on the Raspberry Pi 5B. But the unit test can be run on any Linux platform with onnxruntime.*  
+
+🔹 [**Hardware References**](https://github.com/FluxSand/Hardware): This repository provides the complete set of Gerber files, drill data, and schematic required for manufacturing and testing a PCB design.
 
 
----
+## **📊 Test & Assessment**
+See this [**documentation**](https://fluxsand.github.io/4.assessment/README.html) to learn how we test and evaluate various modules of the system. The documentation covers systematic experiments involving microcontrollers (such as ESP32 and STM32), IMUs, power delivery systems, and signal integrity setups. These tests assess reliability, performance, and integration feasibility under realistic conditions, serving as a reference for both design validation and iterative development.
+
 
 ## **📢 Future Improvements**
 
 🔹 **Additional visual display modes**, such as different sand animations or symbol-based representations.  
 🔹 **Wireless remote control**, allowing users to configure settings via WiFi/Bluetooth.  
 🔹 **Data storage & visualization**, enabling users to track historical temperature & air pressure readings via a web interface.  
-
-## **📝References & Acknowledgments**
-
-🔹 [**Madgwick's filter**](https://github.com/xioTechnologies/Open-Source-AHRS-With-x-IMU): Madgwick algorithm for orientation estimation.
-
-🔹 [**XRobot**](https://github.com/xrobot-org/XRobot): An embedded software framework for MCU, Arm/x86 Linux and simulator.
-
-
-## **🛠️ Compile & Installation**
-
-To compile FluxSand from source and register it as a systemd service, follow the steps below:
-
-### 🧪 Step 1: Build the Project
-
-```bash
-mkdir build
-cd build
-export CC=clang
-export CXX=clang++
-cmake -DCMAKE_BUILD_TYPE=Release ..
-make
-```
-
-You can also use multi-core compilation for better performance:
-
-```bash
-make -j$(nproc)
-```
-
-### 🛰 Step 2: Register as a systemd Service
-
-Create a new systemd unit file `/etc/systemd/system/fluxsand.service` and paste the following content:
-
-```ini
-[Unit]
-Description=FluxSand Digital Hourglass Service
-After=network.target
-
-[Service]
-ExecStart=/home/YOUR_USERNAME/repository/FluxSand/build/FluxSand
-WorkingDirectory=/home/YOUR_USERNAME/repository/FluxSand/build/
-Restart=always
-RestartSec=5
-User=YOUR_USERNAME
-StandardOutput=journal
-StandardError=journal
-
-[Install]
-WantedBy=multi-user.target
-```
-
-Replace `YOUR_USERNAME` with your actual Linux username.
-
-Then reload systemd and enable the service:
-
-```bash
-sudo systemctl daemon-reexec
-sudo systemctl daemon-reload
-sudo systemctl enable fluxsand.service
-sudo systemctl start fluxsand.service
-```
-
-You can check the service status or view logs using:
-
-```bash
-systemctl status fluxsand.service
-journalctl -u fluxsand.service -f
-```
 
 
 ## **🔗 Relevant Links**
